@@ -13,7 +13,7 @@ public class ACKReceiver {
     public void receiveMessage(byte[] message) {
         try {
             service.validateMessage(message);
-            service.progressFlow();
+            service.progressFlow(message);
         } catch (Exception exc) {
             exc.printStackTrace();
         }

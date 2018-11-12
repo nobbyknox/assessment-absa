@@ -16,14 +16,14 @@ public class RoutingRule {
     public String name;
 
     @NotNull
-    public String routeData;
+    public String destination;
 
     @Override
     public String toString() {
         return "RoutingRule{" +
             "id=" + id +
             ", name='" + name + '\'' +
-            ", routeData='" + routeData + '\'' +
+            ", destination='" + destination + '\'' +
             '}';
     }
 }
