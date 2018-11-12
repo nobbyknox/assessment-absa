@@ -1,4 +1,4 @@
-.PHONY: all clean build run test receive send
+.PHONY: all clean build run test
 
 all: run
 
@@ -13,9 +13,3 @@ run:
 
 test:
 	mvn test -Dspring.profiles.active=test
-
-receive: build
-	java -jar target/absa-0.0.1.jar --spring.profiles.active=topics,paymentReceiver --tutorial.client.duration=60000
-
-send: build
-	java -jar target/absa-0.0.1.jar --spring.profiles.active=topics,sender --tutorial.client.duration=60000
