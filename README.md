@@ -75,11 +75,13 @@ For the record, you might also implement a REST endpoint on the path `/error`. T
 
 #### 3. Prepare JUnit test cases to validate the input throughout the flow
 
-Unit tests have been provided that test each queue receiver and associated service. See the unit test source files for details.
+Unit tests have been provided that test each queue receiver and associated service. Please see the unit test source files for details.
 
 #### 4. Using Apache Maven, how will you structure your *pom* file to ensure all relevant dependencies are included?
 
 I mostly start with https://start.spring.io where I specify the main dependencies along with some other details. The site then generates a skeleton application that is used as the base for the project. [View the project's pom.xml file](https://github.com/nobbyknox/assessment-absa/blob/master/pom.xml)
+
+Additionally, the site https://mvnrepository.com/ provides useful snippets for adding additional dependencies to your `pom.xml`.
 
 #### 5. What questions will you ask the System Analyst to ensure these requirements are clear and concise?
 
