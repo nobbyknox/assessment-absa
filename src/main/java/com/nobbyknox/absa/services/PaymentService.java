@@ -1,9 +1,9 @@
-package com.nobbyknox.absa.service;
+package com.nobbyknox.absa.services;
 
 import com.nobbyknox.absa.AbsaApplication;
-import com.nobbyknox.absa.queue.Queues;
-import com.nobbyknox.absa.util.MockMT101Parser;
-import com.nobbyknox.absa.util.XmlUtil;
+import com.nobbyknox.absa.queues.Queues;
+import com.nobbyknox.absa.utils.MockMT101Parser;
+import com.nobbyknox.absa.utils.XmlUtil;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

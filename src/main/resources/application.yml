@@ -1,5 +1,5 @@
 spring:
-    database:
+    datasource:
         url: jdbc:h2:mem:absa;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
         platform: h2
         username: sa
@@ -9,9 +9,11 @@ spring:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate:
             ddl-auto: update
-            show_sql: true
-            use_sql_comments: false
-            format_sql: false
+        properties:
+            hibernate:
+                show_sql: true
+                use_sql_comments: false
+                format_sql: true
     h2:
         console:
             enabled: true

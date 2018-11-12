@@ -1,4 +1,4 @@
-package com.nobbyknox.absa.service;
+package com.nobbyknox.absa.services;
 
 import org.springframework.stereotype.Service;
 

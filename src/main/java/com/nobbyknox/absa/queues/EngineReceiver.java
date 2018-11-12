@@ -1,6 +1,6 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
-import com.nobbyknox.absa.service.EngineService;
+import com.nobbyknox.absa.services.EngineService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

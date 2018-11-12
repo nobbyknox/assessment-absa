@@ -1,4 +1,4 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
 import com.nobbyknox.absa.AbsaApplication;
 import org.springframework.amqp.core.Message;

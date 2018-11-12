@@ -1,6 +1,6 @@
 package com.nobbyknox.absa;
 
-import com.nobbyknox.absa.queue.*;
+import com.nobbyknox.absa.queues.*;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;

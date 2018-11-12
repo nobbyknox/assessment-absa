@@ -1,7 +1,7 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
-import com.nobbyknox.absa.service.PaymentService;
-import com.nobbyknox.absa.util.TestHelper;
+import com.nobbyknox.absa.services.PaymentService;
+import com.nobbyknox.absa.utils.TestHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.stubbing.Answer;

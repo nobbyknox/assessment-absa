@@ -1,6 +1,5 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;

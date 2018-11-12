@@ -1,6 +1,6 @@
-package com.nobbyknox.absa.service;
+package com.nobbyknox.absa.services;
 
-import com.nobbyknox.absa.util.TestHelper;
+import com.nobbyknox.absa.utils.TestHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

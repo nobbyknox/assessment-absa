@@ -1,6 +1,6 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
-import com.nobbyknox.absa.service.StatusService;
+import com.nobbyknox.absa.services.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

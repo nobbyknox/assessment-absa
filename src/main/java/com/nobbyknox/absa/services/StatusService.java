@@ -1,7 +1,7 @@
-package com.nobbyknox.absa.service;
+package com.nobbyknox.absa.services;
 
 import com.nobbyknox.absa.AbsaApplication;
-import com.nobbyknox.absa.queue.Queues;
+import com.nobbyknox.absa.queues.Queues;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.logging.Logger;
 
 @Service
-public class EngineService {
+public class StatusService {
 
-    private Logger logger = Logger.getLogger(EngineService.class.getName());
+    private Logger logger = Logger.getLogger(StatusService.class.getName());
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -22,23 +22,18 @@ public class EngineService {
     }
 
     public void progressFlow(byte[] message) {
-//        Document doc = XmlUtil.deserializeXml(message);
-//        logger.info("Got XML doc for status check");
-
         logger.info("Processing message");
 
-        String whichEngine = mockGetEngine();
-
-        if (whichEngine.equals("ABC")) {
+        if (mockStatusCheck()) {
             // Send further down the line
             Message rabbitMessage = new Message(message, new MessageProperties());
-            rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.ACK.toString(), rabbitMessage);
-        } else {
-            // TODO: What happens here?
+            rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.ENGINE.toString(), rabbitMessage);
         }
+
     }
 
-    private String mockGetEngine() {
-        return "ABC";
+    private boolean mockStatusCheck() {
+        return true;
     }
+
 }

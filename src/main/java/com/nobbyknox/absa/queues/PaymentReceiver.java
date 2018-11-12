@@ -1,19 +1,23 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
-import com.nobbyknox.absa.service.ACKService;
+import com.nobbyknox.absa.services.PaymentService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ACKReceiver {
+public class PaymentReceiver {
 
     @Autowired
-    ACKService service;
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private PaymentService service;
 
     public void receiveMessage(byte[] message) {
         try {
             service.validateMessage(message);
-            service.progressFlow();
+            service.progressFlow(message);
         } catch (Exception exc) {
             exc.printStackTrace();
         }

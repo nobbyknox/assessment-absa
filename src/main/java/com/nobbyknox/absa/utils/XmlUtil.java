@@ -1,4 +1,4 @@
-package com.nobbyknox.absa.util;
+package com.nobbyknox.absa.utils;
 
 import org.w3c.dom.Document;
 

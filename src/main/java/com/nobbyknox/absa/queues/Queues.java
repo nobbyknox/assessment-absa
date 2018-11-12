@@ -1,4 +1,4 @@
-package com.nobbyknox.absa.queue;
+package com.nobbyknox.absa.queues;
 
 public enum Queues {
     PAYMENT("payment.new"),
