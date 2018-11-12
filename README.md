@@ -6,7 +6,7 @@ This repository serves as my assessment submission to ABSA, as requested on 8 No
 
 I had many questions going into this assessment and I event contacted my recruiter, who put me in touch with ABSA, to ask for clarification. However, I was told that I had to complete the assessment with no further clarification. For the record, I include the questions I requested clarify on below.
 
-### First Section
+**First Section**
 
 1. Regarding point #1, should I only process the task "Receive Validated Payment Message" in a new Spring Boot application or should I implement the entire workflow in this new application?
 
@@ -28,7 +28,7 @@ I had many questions going into this assessment and I event contacted my recruit
 
 1. Regarding point #5. Can I include my list of questions to the System Analyst as part of my submission, maybe include them in the README file of a GitHub repository along with the rest of the project?
 
-### NB Section
+**NB Section**
 
 1. Should I only show the XML structure or should I write the XML parser as well?
 
@@ -124,7 +124,7 @@ My questions to the System Analyst are:
 #### 1. Define the internal XML document that mirrors the Swift MT101 file
 
 ```xml
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <mt101>
     <!-- from :20: -->
     <sender>
