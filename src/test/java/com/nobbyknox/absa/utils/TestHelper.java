@@ -17,4 +17,14 @@ public class TestHelper {
 
         return null;
     }
+
+    public static byte[] getXMLBytes() {
+        try {
+            return new String(Files.readAllBytes(Paths.get(ResourceUtils.getFile("classpath:payment-request.xml").getPath())), StandardCharsets.UTF_8).getBytes(StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
