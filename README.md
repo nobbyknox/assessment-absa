@@ -4,7 +4,7 @@ This repository serves as my assessment submission to ABSA, as requested on 8 No
 
 ## Preface
 
-I had many questions going into this assessment and I event contacted my recruiter, who put me in touch with ABSA, to ask for clarification. However, I was told that I had to complete the assessment with no further clarification. For the record, I include the questions I requested clarify on below.
+I had many questions going into this assessment and I event contacted my recruiter to ask for clarification. However, I was told that I had to complete the assessment with no further clarification. For the record, I include the questions I requested clarity on below.
 
 **First Section**
 
@@ -34,7 +34,24 @@ I had many questions going into this assessment and I event contacted my recruit
 
 ## Installation
 
-## System Deployment
+Installation is really easy. Please follow along below:
+
+```bash
+# clone the git repository
+$ git clone git@github.com:nobbyknox/assessment-absa.git
+```
+
+All the usual `maven` commands will work. A `Makefile` has also been provided for your convenience. Below is a table with comparable `maven` and `make` commands:
+
+| Action                | Makefile   | Maven                                                   |
+| :-------------------- | :--------- | :------------------------------------------------------ |
+| Clean build artifacts | make clean | mvn clean                                               |
+| Compile source        | make build | mvn compile                                             |
+| Package jars          | make build | mvn package -Dmaven.test.skip=true                      |
+| Run application       | make run   | mvn spring-boot:run -Dspring.profiles.active=production |
+| Run unit tests        | make test  | mvn test -Dspring.profiles.active=test                  |
+
+> NOTE: The application connects to a RabbitMQ server running on an Amazon EC2 instance in the North Virginia region, so please bear with some sluggishness when running the application. The reason for hosting a RabbitMQ server is so that you don't have to worry about it. The application will *just* work out of the box.
 
 ## Assessment Answers
 
@@ -44,19 +61,25 @@ In this section I answer the questions as they appear on the assessment document
 
 #### 1. Prepare a Spring Boot application with relevant dependencies that consumes the validated message from the queue and run through the process.
 
-blah
+This submission contains four queue receivers which pass their payloads on to dedicated services that validate and process the messages. The services contain some logic, but this submission does not dive too deep into the details. Mostly for the reason that the business rules have not been specified.
 
 #### 2. How will you handle exceptions in the application?
 
-blah
+There are a few approaches to exception handling which I'll cover briefly.
 
-#### 3. Prepare jUnit test cases to validate the input throughout the flow
+The first is a matter of programming style where the entry point to an action, be it REST controller or message listener, is responsible for the delegation of work to services or other workers, as well as for catching and prober handling of any exceptions that might be thrown (checked or unchecked) by said workers.
 
-blah
+The second approach covers the build-in exception handing tooling provided by the Spring Boot framework itself that deals with exceptions on a global level. For REST controllers, use a `Controller Advice` class to intercept and handle exceptions. This submission does just this by implementing its own [CustomResponseExceptionHandler](https://github.com/nobbyknox/assessment-absa/blob/master/src/main/java/com/nobbyknox/absa/controllers/CustomResponseExceptionHandler.java)
 
-#### 4. Using Apache Maven, how will you structure your *pom* file ensure all relevant dependencies are included?
+For the record, you might also implement a REST endpoint on the path `/error`. This will allow you greater control over the response that will be presented to the user.
 
-blah
+#### 3. Prepare JUnit test cases to validate the input throughout the flow
+
+Unit tests have been provided that test each queue receiver and associated service. See the unit test source files for details.
+
+#### 4. Using Apache Maven, how will you structure your *pom* file to ensure all relevant dependencies are included?
+
+I mostly start with https://start.spring.io where I specify the main dependencies along with some other details. The site then generates a skeleton application that is used as the base for the project. [View the project's pom.xml file](https://github.com/nobbyknox/assessment-absa/blob/master/pom.xml)
 
 #### 5. What questions will you ask the System Analyst to ensure these requirements are clear and concise?
 
@@ -114,6 +137,8 @@ My questions to the System Analyst are:
 
 1. How will the performance of the system be monitored?
 
+1. How will errors be surfaced and brought to the attention of the responsible parties?
+
 1. What are the SLAs in terms of:
     - Uptime
     - Fault tolerance
@@ -123,18 +148,22 @@ My questions to the System Analyst are:
 
 #### 1. Define the internal XML document that mirrors the Swift MT101 file
 
+The following XML sample file was constructed after studying the Swift MT101 file specification. Element naming and grouping is that of my own and might have little resemblance to implementations in the real world. However, the file below is serviceable and will get the job done.
+
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <mt101>
     <!-- from :20: -->
     <sender>
         <ref>123456789</ref>
     </sender>
 
-    <!-- from section :28D: -->
+    <!-- mostly from section :28D: -->
     <meta>
         <index>1</index>
         <total>1</total>
+        <status>approved</status>
+        <destination></destination>
     </meta>
 
     <!-- from :50H: -->
@@ -191,29 +220,6 @@ My questions to the System Analyst are:
 
 ## Parting Thoughts
 
----
+I was unsure about the scope of the assessment and fear that I might have spent too much time on the infrastructural elements. However, the result is that of a working system that connects to a hosted message queue server and in-memory seeded database which makes the project runnable right out of the box.
 
-## Dev Notes
-
-### Spring Boot Application
-Bootstrap your Spring Boot application with https://start.spring.io and add the following dependencies:
-
-* Web
-* RabbitMQ
-* JPA
-* DevTools
-* H2
-
-### RabbitMQ
-
-Use this docker command:
-
-```bash
-$ docker run -d --name rabbitmq --restart unless-stopped -p 8080:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
-```
-
-Access the management interface on http://34.205.16.148:8080
-
-### Swift MT101
-
-Check out http://www.sepaforcorporates.com/swift-for-corporates/quick-guide-swift-mt101-format/
+I trust that this body of work meets with your approval.
