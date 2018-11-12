@@ -25,3 +25,6 @@ spring:
         host: 34.205.16.148
         username: user
         password: password
+app:
+    endpoint:
+        routingRules: http://127.0.0.1:8080/rules
