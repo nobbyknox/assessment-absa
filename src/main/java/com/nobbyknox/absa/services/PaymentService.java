@@ -26,10 +26,7 @@ public class PaymentService {
         ValidationHelper.validateMT101Message(message);
     }
 
-    public void progressFlow(byte[] message) {
-
-        logger.info("Processing message");
-
+    public void advanceFlow(byte[] message) {
         Document doc = MockMT101Parser.parseMessage(new String(message, StandardCharsets.UTF_8));
 
         if (doc == null) {

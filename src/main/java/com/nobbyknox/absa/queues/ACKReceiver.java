@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 public class ACKReceiver {
 
     @Autowired
-    ACKService service;
+    private ACKService service;
 
     public void receiveMessage(byte[] message) {
         try {
             service.validateMessage(message);
-            service.progressFlow(message);
+            service.advanceFlow(message);
         } catch (Exception exc) {
             exc.printStackTrace();
         }

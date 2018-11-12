@@ -17,27 +17,9 @@ public class EngineReceiver {
     public void receiveMessage(byte[] message) {
         try {
             service.validateMessage(message);
-            service.progressFlow(message);
+            service.advanceFlow(message);
         } catch (Exception exc) {
             exc.printStackTrace();
         }
-
-/*
-        Document doc = XmlUtil.deserializeXml(message);
-
-        System.out.println("Got XML doc for status check");
-
-        String whichEngine = mockGetEngine();
-
-        if (whichEngine.equals("ABC")) {
-            // Send further down the line
-            Message rabbitMessage = new Message(message, new MessageProperties());
-            rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.ACK.toString(), rabbitMessage);
-        }
-*/
     }
-
-//    private String mockGetEngine() {
-//        return "ABC";
-//    }
 }

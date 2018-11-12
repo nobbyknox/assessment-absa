@@ -30,7 +30,7 @@ public class Sender implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         logger.info("Sending MT101 message...");
         String mt101 = getMT101Message();
 
@@ -38,13 +38,6 @@ public class Sender implements CommandLineRunner {
             logger.severe("Unable to load MT101 message");
             return;
         }
-
-//        Document xml = MockMT101Parser.parseMessage(mt101);
-//
-//        if (xml == null) {
-//            System.out.println("Unable to parse MT101 into XML format");
-//            return;
-//        }
 
         Message mesg = new Message(mt101.getBytes(StandardCharsets.UTF_8), new MessageProperties());
         rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.PAYMENT.toString(), mesg);

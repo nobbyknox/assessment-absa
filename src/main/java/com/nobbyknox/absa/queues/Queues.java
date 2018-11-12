@@ -4,8 +4,7 @@ public enum Queues {
     PAYMENT("payment.new"),
     STATUS("payment.status"),
     ENGINE("payment.engine"),
-    ACK("payment.ack"),
-    TEST("payment.test");
+    ACK("payment.ack");
 
     @Override
     public String toString() {

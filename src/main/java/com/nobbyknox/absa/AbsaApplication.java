@@ -37,11 +37,6 @@ public class AbsaApplication {
     }
 
     @Bean
-    Queue testQueue() {
-        return new Queue(Queues.TEST.toString(), false, true, true);
-    }
-
-    @Bean
     TopicExchange exchange() {
         return new TopicExchange(topicExchangeName);
     }
@@ -64,11 +59,6 @@ public class AbsaApplication {
     @Bean
     Binding ackBinding(TopicExchange exchange) {
         return BindingBuilder.bind(ackQueue()).to(exchange).with(Queues.ACK.toString());
-    }
-
-    @Bean
-    Binding testBinding(TopicExchange exchange) {
-        return BindingBuilder.bind(testQueue()).to(exchange).with(Queues.TEST.toString());
     }
 
     @Bean
@@ -112,16 +102,6 @@ public class AbsaApplication {
     }
 
     @Bean
-    @Profile("!test")
-    SimpleMessageListenerContainer testMessageContainer(ConnectionFactory connectionFactory, @Qualifier("testListenerAdapter") MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(Queues.TEST.toString());
-        container.setMessageListener(listenerAdapter);
-        return container;
-    }
-
-    @Bean
     MessageListenerAdapter paymentListenerAdapter(PaymentReceiver receiver) {
         return new MessageListenerAdapter(receiver, "receiveMessage");
     }
@@ -138,11 +118,6 @@ public class AbsaApplication {
 
     @Bean
     MessageListenerAdapter ackListenerAdapter(ACKReceiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMessage");
-    }
-
-    @Bean
-    MessageListenerAdapter testListenerAdapter(TestReceiver receiver) {
         return new MessageListenerAdapter(receiver, "receiveMessage");
     }
 

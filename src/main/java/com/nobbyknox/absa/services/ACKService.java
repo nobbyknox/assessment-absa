@@ -14,7 +14,7 @@ public class ACKService {
         ValidationHelper.validateXmlMessage(message);
     }
 
-    public void progressFlow(byte[] message) {
+    public void advanceFlow(byte[] message) {
         logger.info("Payment successfully processed. End of workflow reached.");
         sendMT195Message(XmlUtil.deserializeXml(message));
     }
@@ -24,20 +24,4 @@ public class ACKService {
         logger.info("(conversion and sending not shown)");
         logger.info("Payment message processing complete");
     }
-
-//    private MessageStatus getMessageStatus(Document doc) {
-//        MessageStatus status = MessageStatus.UNKNOWN; // initialize with something sensible
-//
-//        NodeList nodes = doc.getElementsByTagName("meta");
-//        Node metaNode = nodes.item(0);
-//        NodeList children = metaNode.getChildNodes();
-//
-//        for (int i = 0; i < children.getLength(); i++) {
-//            if (children.item(i).getNodeName().equals("status")) {
-//                status = MessageStatus.getStatus(children.item(i).getTextContent());
-//            }
-//        }
-//
-//        return status;
-//    }
 }

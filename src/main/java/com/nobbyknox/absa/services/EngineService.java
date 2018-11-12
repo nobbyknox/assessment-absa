@@ -26,7 +26,7 @@ public class EngineService {
         ValidationHelper.validateXmlMessage(message);
     }
 
-    public void progressFlow(byte[] message) {
+    public void advanceFlow(byte[] message) {
         Document doc = XmlUtil.deserializeXml(message);
 
         if (doc == null) {
@@ -60,8 +60,8 @@ public class EngineService {
     }
 
     private void targetSettlementEngineAdapter(Document doc) {
-        logger.info("Targeting settlement engine adapter...");
         // Do import settlement work here and then just end as there is nothing left to do
+        logger.info("Targeting settlement engine adapter...");
         logger.info("Payment message processing complete");
     }
 
