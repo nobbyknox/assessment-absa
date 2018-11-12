@@ -34,7 +34,7 @@ public class PaymentReceiverTests {
     @Test
     public void shouldReceiveByteArray() {
         try {
-            doAnswer((Answer<Void>) invocation -> null).when(this.service).validateMT101Message(null);
+            doAnswer((Answer<Void>) invocation -> null).when(this.service).validateMessage(null);
             doAnswer((Answer<Void>) invocation -> null).when(this.service).progressFlow(null);
             receiver.receiveMessage(TestHelper.getMT101Bytes());
         } catch (Exception exc) {

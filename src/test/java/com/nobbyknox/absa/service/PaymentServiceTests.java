@@ -21,7 +21,7 @@ public class PaymentServiceTests {
     @Test
     public void shouldAcceptValidMT101Message() {
         try {
-            service.validateMT101Message(TestHelper.getMT101Bytes());
+            service.validateMessage(TestHelper.getMT101Bytes());
         } catch (Exception exc) {
             fail(exc.getMessage());
         }
@@ -30,7 +30,7 @@ public class PaymentServiceTests {
     @Test
     public void shouldFailOnNullMT101Message() {
         try {
-            service.validateMT101Message(null);
+            service.validateMessage(null);
             fail("Expected to fail on null message");
         } catch (Exception e) {
             // do nothing

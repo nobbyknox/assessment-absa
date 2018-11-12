@@ -1,13 +1,9 @@
 package com.nobbyknox.absa.queue;
 
-import com.nobbyknox.absa.AbsaApplication;
-import com.nobbyknox.absa.util.XmlUtil;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
+import com.nobbyknox.absa.service.EngineService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
 
 @Component
 public class EngineReceiver {
@@ -15,7 +11,18 @@ public class EngineReceiver {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private EngineService service;
+
     public void receiveMessage(byte[] message) {
+        try {
+            service.validateMessage(message);
+            service.progressFlow(message);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+
+/*
         Document doc = XmlUtil.deserializeXml(message);
 
         System.out.println("Got XML doc for status check");
@@ -27,9 +34,10 @@ public class EngineReceiver {
             Message rabbitMessage = new Message(message, new MessageProperties());
             rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.ACK.toString(), rabbitMessage);
         }
+*/
     }
 
-    private String mockGetEngine() {
-        return "ABC";
-    }
+//    private String mockGetEngine() {
+//        return "ABC";
+//    }
 }

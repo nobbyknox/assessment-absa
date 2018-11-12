@@ -16,7 +16,7 @@ public class PaymentReceiver {
 
     public void receiveMessage(byte[] message) {
         try {
-            service.validateMT101Message(message);
+            service.validateMessage(message);
             service.progressFlow(message);
         } catch (Exception exc) {
             exc.printStackTrace();
