@@ -18,6 +18,14 @@ public class RoutingRule {
     @NotNull
     public String destination;
 
+    public RoutingRule() {
+    }
+
+    public RoutingRule(String name, String destination) {
+        this.name = name;
+        this.destination = destination;
+    }
+
     @Override
     public String toString() {
         return "RoutingRule{" +
