@@ -7,6 +7,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
@@ -17,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Component
+@Profile("production")
 public class Sender implements CommandLineRunner {
 
     private final RabbitTemplate rabbitTemplate;
@@ -37,14 +39,14 @@ public class Sender implements CommandLineRunner {
             return;
         }
 
-        Document xml = MockMT101Parser.parseMessage(mt101);
+//        Document xml = MockMT101Parser.parseMessage(mt101);
+//
+//        if (xml == null) {
+//            System.out.println("Unable to parse MT101 into XML format");
+//            return;
+//        }
 
-        if (xml == null) {
-            System.out.println("Unable to parse MT101 into XML format");
-            return;
-        }
-
-        Message mesg = new Message(XmlUtil.serializeXml(xml), new MessageProperties());
+        Message mesg = new Message(mt101.getBytes(StandardCharsets.UTF_8), new MessageProperties());
         rabbitTemplate.send(AbsaApplication.topicExchangeName, Queues.PAYMENT.toString(), mesg);
     }
 

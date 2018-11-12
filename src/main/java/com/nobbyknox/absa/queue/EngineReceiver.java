@@ -9,18 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 
-import java.nio.charset.StandardCharsets;
-
 @Component
 public class EngineReceiver {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
-//    public void receiveMessage(String message) {
-//        System.out.println("[EngineReceiver] Received: " + message);
-//        rabbitTemplate.convertAndSend(AbsaApplication.topicExchangeName, Queues.ACK.toString(), "ACK");
-//    }
 
     public void receiveMessage(byte[] message) {
         Document doc = XmlUtil.deserializeXml(message);

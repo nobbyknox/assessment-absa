@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class AbsaApplication {
@@ -71,6 +72,7 @@ public class AbsaApplication {
     }
 
     @Bean
+    @Profile("production")
     SimpleMessageListenerContainer paymentContainer(ConnectionFactory connectionFactory, @Qualifier("paymentListenerAdapter") MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -80,6 +82,7 @@ public class AbsaApplication {
     }
 
     @Bean
+    @Profile("production")
     SimpleMessageListenerContainer statusContainer(ConnectionFactory connectionFactory, @Qualifier("statusListenerAdapter") MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -89,6 +92,7 @@ public class AbsaApplication {
     }
 
     @Bean
+    @Profile("production")
     SimpleMessageListenerContainer engineContainer(ConnectionFactory connectionFactory, @Qualifier("engineListenerAdapter") MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -98,6 +102,7 @@ public class AbsaApplication {
     }
 
     @Bean
+    @Profile("production")
     SimpleMessageListenerContainer ackContainer(ConnectionFactory connectionFactory, @Qualifier("ackListenerAdapter") MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
@@ -107,6 +112,7 @@ public class AbsaApplication {
     }
 
     @Bean
+    @Profile("production")
     SimpleMessageListenerContainer testMessageContainer(ConnectionFactory connectionFactory, @Qualifier("testListenerAdapter") MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
