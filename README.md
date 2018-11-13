@@ -53,6 +53,23 @@ All the usual `maven` commands will work. A `Makefile` has also been provided fo
 
 > NOTE: The application connects to a RabbitMQ server running on an Amazon EC2 instance in the North Virginia region, so please bear with some sluggishness when running the application. The reason for hosting a RabbitMQ server is so that you don't have to worry about it. The application will *just* work out of the box.
 
+## Database Console
+
+When the application is running (with `make run` or maven equivalent), a H2 database console is exposed on http://127.0.0.1:8080/console
+
+Use the following details to enter the console:
+
+| Field        | Value            |
+| :----------- | :--------------- |
+| Driver Class | org.h2.Driver    |
+| JDBC URL     | jdbc:h2:mem:absa |
+| User Name    | sa               |
+| Password     |                  |
+
+## RabbitMQ Console
+
+The RabbitMQ console can be accessed on http://34.205.16.148:8080 with the username "user" and password "password".
+
 ## Assessment Answers
 
 In this section I answer the questions as they appear on the assessment document, numbered accordingly.
