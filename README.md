@@ -4,7 +4,7 @@ This repository serves as my assessment submission to ABSA, as requested on 8 No
 
 ## Preface
 
-I had many questions going into this assessment and I event contacted my recruiter to ask for clarification. However, I was told that I had to complete the assessment with no further clarification. For the record, I include the questions I requested clarity on below.
+I had many questions going into this assessment and I even contacted my recruiter to ask for clarification. However, I was told that I had to complete the assessment with no further clarification. For the record, I include the questions I requested clarity on, below.
 
 **First Section**
 
@@ -150,7 +150,7 @@ My questions to the System Analyst are:
 
 #### 1. Define the internal XML document that mirrors the Swift MT101 file
 
-The following XML sample file was constructed after studying the Swift MT101 file specification. Element naming and grouping is that of my own and might have little resemblance to implementations in the real world. However, the file below is serviceable and will get the job done.
+The following XML sample file was constructed after studying the Swift MT101 file specification. Element naming and grouping is that of my own making and might have little resemblance to implementations in the real world. However, the file below is serviceable and will get the job done.
 
 ```xml
 <?xml version="1.0"?>
