@@ -41,15 +41,19 @@ Installation is really easy. Please follow along below:
 $ git clone git@github.com:nobbyknox/assessment-absa.git
 ```
 
+## Run the Application
+
 All the usual `maven` commands will work. A `Makefile` has also been provided for your convenience. Below is a table with comparable `maven` and `make` commands:
 
-| Action                | Makefile   | Maven                                                   |
+| Action                | Make       | Maven                                                   |
 | :-------------------- | :--------- | :------------------------------------------------------ |
 | Clean build artifacts | make clean | mvn clean                                               |
 | Compile source        | make build | mvn compile                                             |
 | Package jars          | make build | mvn package -Dmaven.test.skip=true                      |
 | Run application       | make run   | mvn spring-boot:run -Dspring.profiles.active=production |
 | Run unit tests        | make test  | mvn test -Dspring.profiles.active=test                  |
+
+Run the application either with `make run` or `mvn spring-boot:run -Dspring.profiles.active=production`. Once the application has started, it will initiate the workflow by placing the initial MT101 message unto the queue. The message will be picked up, validated, processed and again placed on the queue where it will flow through the rest of the process.
 
 > NOTE: The application connects to a RabbitMQ server running on an Amazon EC2 instance in the North Virginia region, so please bear with some sluggishness when running the application. The reason for hosting a RabbitMQ server is so that you don't have to worry about it. The application will *just* work out of the box.
 
